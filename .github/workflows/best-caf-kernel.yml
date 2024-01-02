@@ -26,7 +26,7 @@ jobs:
        - name: fetching caf sources
          run: |
               cd source
-              git fetch https://source.codeaurora.org/quic/la/kernel/${{ vars.KERNEL_VERSION }} 'refs/tags*:refs/tags*'
+              git fetch https://git.codelinaro.org/clo/la/kernel/${{ vars.KERNEL_VERSION }} 'refs/tags*:refs/tags*'
 
        - name: Finding best caf tag
          run: |
