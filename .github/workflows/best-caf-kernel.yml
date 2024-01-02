@@ -23,14 +23,14 @@ jobs:
          run: |
              chmod 777 config.sh
              source config.sh
-             git clone --depth=1 $KERNEL_SOURCE -b $BRANCH source
+             git clone --depth=1 ${{ vars.KERNEL_SOURCE }} -b ${{ vars.BRANCH }} source
 
        - name: fetching caf sources
          run: |
               chmod 777 config.sh
               source config.sh
               cd source
-              git fetch https://source.codeaurora.org/quic/la/kernel/$KERNEL_VERSION 'refs/tags*:refs/tags*'
+              git fetch https://source.codeaurora.org/quic/la/kernel/${{ vars.KERNEL_VERSION }} 'refs/tags*:refs/tags*'
 
        - name: Finding best caf tag
          run: |
@@ -39,4 +39,4 @@ jobs:
               cd source
               wget https://raw.githubusercontent.com/LineageOS/scripts/master/best-caf-kernel/best-caf-kernel.py
               chmod +x best-caf-kernel.py
-              python best-caf-kernel.py "$PLATFORM"
+              python best-caf-kernel.py "${{ vars.PLATFORM }}"
