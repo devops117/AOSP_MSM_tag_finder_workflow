@@ -1,0 +1,36 @@
+name: CAF tag finder
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+       - name: Checkout
+         uses: actions/checkout@master
+
+       - name: Initializing environment
+         run: |
+            sudo -E apt-get clean
+            sudo -E apt-get -qq update
+            sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python3 gcc clang libssl-dev repo rsync flex curl bison aria2
+            git config --global user.name "devops117"
+            git config --global user.email "devops117.main@protonmail.com"
+
+       - name: Sync kernel source
+         run: |
+             git clone --depth=1 ${{ vars.KERNEL_SOURCE }} -b ${{ vars.BRANCH }} source
+
+       - name: fetching caf sources
+         run: |
+              cd source
+              git fetch https://git.codelinaro.org/clo/la/kernel/${{ vars.KERNEL_VERSION }} 'refs/tags*:refs/tags*'
+
+       - name: Finding best caf tag
+         run: |
+              cd source
+              wget https://raw.githubusercontent.com/LineageOS/scripts/master/best-caf-kernel/best-caf-kernel.py
+              chmod +x best-caf-kernel.py
+              python best-caf-kernel.py "${{ vars.PLATFORM }}"
