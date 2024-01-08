@@ -14,3 +14,5 @@
 > KERNEL_SOURCE: https://github.com/devops117/android-kernel-leeco-s2
 
 > KERNEL_BRANCH: master
+
+> AOSP_MSM_TAG_PATTERN: android-8*
