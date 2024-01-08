@@ -31,4 +31,4 @@ jobs:
               cd source
               wget https://raw.githubusercontent.com/LineageOS/scripts/master/best-caf-kernel/best-caf-kernel.py
               chmod +x best-caf-kernel.py
-              python best-caf-kernel.py "${{ vars.PLATFORM }}"
+              python best-caf-kernel.py "${{ vars.BOARD_PLATFORM_PATTERN }}"
