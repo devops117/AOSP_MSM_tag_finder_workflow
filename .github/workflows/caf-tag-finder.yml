@@ -19,7 +19,7 @@ jobs:
 
        - name: Sync kernel source
          run: |
-             git clone --depth=1 ${{ vars.KERNEL_SOURCE }} -b ${{ vars.BRANCH }} source
+             git clone --depth=1 ${{ vars.KERNEL_SOURCE }} -b ${{ vars.KERNEL_BRANCH }} source
 
        - name: fetching caf sources
          run: |
