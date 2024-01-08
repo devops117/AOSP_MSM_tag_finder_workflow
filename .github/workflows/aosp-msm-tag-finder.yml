@@ -1,4 +1,4 @@
-name: CAF tag finder
+name: AOSP MSM tag finder
 
 on:
   workflow_dispatch:
@@ -21,14 +21,14 @@ jobs:
          run: |
              git clone --depth=1 ${{ vars.KERNEL_SOURCE }} -b ${{ vars.KERNEL_BRANCH }} source
 
-       - name: fetching caf sources
+       - name: fetching aosp msm sources
          run: |
               cd source
-              git fetch https://git.codelinaro.org/clo/la/kernel/${{ vars.KERNEL_VERSION }} 'refs/tags*:refs/tags*'
+              git fetch https://android.googlesource.com/kernel/msm 'refs/tags*:refs/tags*'
 
-       - name: Finding the best caf tag
+       - name: Finding the best aosp msm tag
          run: |
               cd source
               wget https://raw.githubusercontent.com/LineageOS/scripts/master/best-caf-kernel/best-caf-kernel.py
               chmod +x best-caf-kernel.py
-              python best-caf-kernel.py "${{ vars.BOARD_PLATFORM_PATTERN }}"
+              python best-caf-kernel.py "*"
