@@ -14,5 +14,3 @@
 > KERNEL_SOURCE: https://github.com/devops117/android-kernel-leeco-s2
 
 > KERNEL_BRANCH: master
-
-> BOARD_PLATFORM_PATTERN: android-*
